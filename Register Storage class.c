@@ -1,8 +1,11 @@
 #include <stdio.h>
 int main(){
-  register int i;
-  for (i=0; i<=100000000; i++){
-    printf("%d\n", i);
+  register long int i;
+  register int b;
+  printf("task started\n");
+  for (i=0; i<=10000000000; i++){
+    b=0;
   }
+  printf("task completed\n");
   return 0;
 }
