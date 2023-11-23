@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <conio.h>
+//#include <conio.h>
 
-void main()
+int main()
 {
 	int h, e, m, s, t;
 	float a;
-	clrscr();
+	//clrscr();
 	printf("Write your english marks out of 100: ");
 	scanf("%d", &e);
 
@@ -21,6 +21,7 @@ void main()
 	t = h + e + s + m;
 	printf("\nTotal marks out of 400 is %d", t);
 	a = t/4;
-	printf("\nTotal percentage is %f%", a);
-	getch();
+	printf("\nTotal percentage is %.2f%% ", a);
+	//getch();
+	return 0;
 }
