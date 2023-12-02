@@ -1,61 +1,69 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 class cashRegister
 {
-    public:
-    int getCurrentBalance() const{
-        return cashOnHand;
-    }
-    
-    void acceptAmount(int amountIn){
-        cashOnHand = cashOnHand + amountIn;
-    }
-    
-    cashRegister(){
-        cashOnHand = 500;
-    }
-    
-    cashRegister(int cashIn){
-        if (cashIn >= 0)
-            cashOnHand = cashIn;
-        else
-            cashOnHand = 500;
-    }
-    
     private:
-    int cashOnHand;
+        int cashOnHand;
+    public:
+        int getCurrentBalance() const
+        {
+            return cashOnHand;
+        }
+
+        void acceptAmount(int amountIn)
+        {
+            cashOnHand = cashOnHand + amountIn;
+        }
+
+        cashRegister()
+        {
+            cashOnHand = 500;
+        }
+
+        cashRegister(int cashIn)
+        {
+            if (cashIn >= 0)
+                cashOnHand = cashIn;
+            else
+                cashOnHand = 500;
+        }
 };
 
 class dispenserType
 {
-public:
-int getNoOfItems() const{
-    return numberOfItems;
-}
-int getCost() const{
-    return cost;
-}
-void makeSale(){
-    numberOfItems--;
-}
-dispenserType(){
-    numberOfItems = 50;
-    cost = 50;
-}
-dispenserType(int setNoOfItems, int setCost){
-    if (setNoOfItems >= 0)
-        numberOfItems = setNoOfItems;
-    else
-        numberOfItems = 50;
-    if (setCost >= 0)
-        cost = setCost;
-    else
-        cost = 50;
-}
-private:
-int numberOfItems;
-int cost;
+    private:
+    int numberOfItems;
+    int cost;
+    public:
+        int getNoOfItems() const
+        {
+            return numberOfItems;
+        }
+        int getCost() const
+        {
+            return cost;
+        }
+        void makeSale()
+        {
+            numberOfItems--;
+        }
+        dispenserType()
+        {
+            numberOfItems = 50;
+            cost = 50;
+        }
+        dispenserType(int setNoOfItems, int setCost)
+        {
+            if (setNoOfItems >= 0)
+                numberOfItems = setNoOfItems;
+            else
+                numberOfItems = 50;
+            if (setCost >= 0)
+                cost = setCost;
+            else
+                cost = 50;
+        }
 };
 
 void showSelection()
@@ -69,29 +77,34 @@ void showSelection()
     cout << "9 to exit" << endl;
 }
 
-void sellProduct(dispenserType& product, cashRegister& pCounter)
+void sellProduct(dispenserType &product, cashRegister &pCounter)
 {
     int amount;
     int amount2;
-    if (product.getNoOfItems() > 0) 
+    if (product.getNoOfItems() > 0)
     {
-        cout << "Please deposit " << product.getCost()<< " cents" << endl;
+        cout << "Please deposit " << product.getCost() << " cents" << endl;
         cin >> amount;
-        if (amount < product.getCost())
-        {
-            cout << "Please deposit another "<< product.getCost()- amount << " cents" << endl;
+        while(amount < product.getCost()){
+            cout << "Please deposit another " << product.getCost() - amount << " cents" << endl;
             cin >> amount2;
             amount = amount + amount2;
+            if (amount2 == 0) 
+                break;
+            else if(amount >= product.getCost())
+                break;
         }
         if (amount >= product.getCost())
         {
             pCounter.acceptAmount(amount);
             product.makeSale();
-            cout << "Collect your item at the bottom and enjoy."<< endl;
+            cout << "Collect your item at the bottom and enjoy." << endl;
         }
         else
-            cout << "The amount is not enough. "<< "Collect what you deposited." << endl;
-        cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"<< endl << endl;
+            cout << "The amount is not enough. "
+                 << "Collect what you deposited." << endl;
+        cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << endl
+             << endl;
     }
     else
         cout << "Sorry, this item is sold out." << endl;
@@ -104,7 +117,7 @@ int main()
     dispenserType orangeJuice(100, 65);
     dispenserType mangoLassi(75, 45);
     dispenserType fruitPunch(100, 85);
-    int choice; 
+    int choice;
     showSelection();
     cin >> choice;
     while (choice != 9)
@@ -127,7 +140,7 @@ int main()
             cout << "Invalid selection." << endl;
         }
         showSelection();
-        cin>> choice;
+        cin >> choice;
     }
     return 0;
 }
