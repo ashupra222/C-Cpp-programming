@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class cashRegister
+class CashRegister
 {
     private:
         int cashOnHand;
@@ -16,12 +16,12 @@ class cashRegister
             cashOnHand = cashOnHand + amountIn;
         }
 
-        cashRegister()
+        CashRegister()
         {
             cashOnHand = 500;
         }
 
-        cashRegister(int cashIn)
+        CashRegister(int cashIn)
         {
             if (cashIn >= 0)
                 cashOnHand = cashIn;
@@ -30,7 +30,7 @@ class cashRegister
         }
 };
 
-class dispenserType
+class DispenserType
 {
     private:
     int numberOfItems;
@@ -48,12 +48,12 @@ class dispenserType
         {
             numberOfItems--;
         }
-        dispenserType()
+        DispenserType()
         {
             numberOfItems = 50;
             cost = 50;
         }
-        dispenserType(int setNoOfItems, int setCost)
+        DispenserType(int setNoOfItems, int setCost)
         {
             if (setNoOfItems >= 0)
                 numberOfItems = setNoOfItems;
@@ -77,7 +77,7 @@ void showSelection()
     cout << "9 to exit" << endl;
 }
 
-void sellProduct(dispenserType &product, cashRegister &pCounter)
+void sellProduct(DispenserType &product, CashRegister &pCounter)
 {
     int amount;
     int amount2;
@@ -112,11 +112,11 @@ void sellProduct(dispenserType &product, cashRegister &pCounter)
 
 int main()
 {
-    cashRegister counter;
-    dispenserType appleJuice(100, 50);
-    dispenserType orangeJuice(100, 65);
-    dispenserType mangoLassi(75, 45);
-    dispenserType fruitPunch(100, 85);
+    CashRegister counter;
+    DispenserType appleJuice(100, 50);
+    DispenserType orangeJuice(100, 65);
+    DispenserType mangoLassi(75, 45);
+    DispenserType fruitPunch(100, 85);
     int choice;
     showSelection();
     cin >> choice;
